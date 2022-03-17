@@ -44,11 +44,16 @@ public class Trie {
      * @return
      */
     public boolean searchCurrNode(char c) {
-        for(int i = 0; i < root.children.length; i++) { // loop that checks all the currNode's children
-            if(currNode.children[i].getChar() == c) {   // if the child has the specified value, set currNode pointer to that child.
-                currNode = currNode.children[i];
-                return true;
+        try {
+            for(int i = 0; i < root.children.length; i++) { // loop that checks all the currNode's children
+                if(currNode.children[i].getChar() == c) {   // if the child has the specified value, set currNode pointer to that child.
+                    currNode = currNode.children[i];
+                    return true;
+                }
             }
+        }
+        catch(Exception e){
+            return false;
         }
         return false;
     }

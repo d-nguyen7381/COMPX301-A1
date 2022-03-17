@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class hex2byte {
     public static void main(String[] args) {
@@ -17,9 +18,7 @@ public class hex2byte {
 
         char[] strHex = str.toCharArray();  // Converts the string of hex values into an array
         byte[] strBytes = hexToBytes(strHex);   // Converts the hex values into a stream of bytes
-
         System.out.println(new String(strBytes));
-
     }
 
     /**
@@ -28,16 +27,18 @@ public class hex2byte {
      * @return an array of the stream of bytes
      */
     private static byte[] hexToBytes(char[] hexArr) {
-        final String hexChars = "0123456789ABCDEF";
-
+        //final String hexChars = "0123456789ABCDEF";
         byte[] bytesArr = new byte[hexArr.length/2];
 
         // Loop that converts each pair of hex values into one byte value, and adds it to array
         for(int i = 0; i < bytesArr.length; i++) {
-            int byteValue = hexChars.indexOf(hexArr[i*2]) + (hexChars.indexOf(hexArr[i*2+1]) << 4);
-            bytesArr[i] = (byte)byteValue;
-        }
-        
+            System.out.println(hexArr[i*2]);
+            System.out.println(hexArr[i*2+1]);
+            System.out.println(i);
+            String byteValue = new String(new char[]{hexArr[i*2], hexArr[i*2+1]});
+            System.out.println(byteValue);
+            bytesArr[i] = (byte)(Integer.parseInt(byteValue,16)&0xFF);
+        }        
         return bytesArr;
     }
 }

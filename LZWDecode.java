@@ -3,4 +3,8 @@ public class LZWDecode {
     {
         
     }
+    public static String Decode(int phraseNumbers)
+    {
+        return "A";
+    }
 }

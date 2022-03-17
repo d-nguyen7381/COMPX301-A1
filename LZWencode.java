@@ -36,7 +36,7 @@ public class LZWencode {
                     }
                 }
             }
-            System.out.println(dictionary.getCurrNode().getPhrase() + " " + dictionary.getCurrNode().getChar());
+            System.out.println(dictionary.getCurrNode().getPhrase());
         }
 
         /* The LWZ loop won't print out at the last phrase number unless it belongs to a sequence.
@@ -45,7 +45,7 @@ public class LZWencode {
         if(hexArr[hexArr.length - 1] != dictionary.getCurrNode().getChar()) {
             dictionary.resetCurrNode();
             dictionary.searchCurrNode(hexArr[hexArr.length - 1]);
-            System.out.println(dictionary.getCurrNode().getPhrase() + " " + dictionary.getCurrNode().getChar());
+            System.out.println(dictionary.getCurrNode().getPhrase());
         }
     }
 }

@@ -18,7 +18,10 @@ public class hex2byte {
 
         char[] strHex = str.toCharArray();  // Converts the string of hex values into an array
         byte[] strBytes = hexToBytes(strHex);   // Converts the hex values into a stream of bytes
-        System.out.println(new String(strBytes));
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        bos.write(strBytes,0,strBytes.length);
+        String streamData = bos.toString();
+        System.out.println(streamData);
     }
 
     /**

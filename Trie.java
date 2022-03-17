@@ -1,3 +1,5 @@
+import java.util.Currency;
+
 public class Trie {
     final private char[] hexDigits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
     private int newPhrase;
@@ -57,7 +59,6 @@ public class Trie {
         }
         return false;
     }
-
     /**
      * Inserts a new child/node at the current node.
      * @param c the specified value we want to insert
@@ -68,6 +69,7 @@ public class Trie {
             if(currNode.children[i] == null) {
                 currNode.children[i] = new Node(c, newPhrase);
                 newPhrase++;    // increments the value of the new phrase for the next insert
+                System.out.println(currNode.children[i].getChar() + "," + currNode.children[i].getPhrase());
                 break;
             } 
         }

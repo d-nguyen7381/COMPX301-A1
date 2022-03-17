@@ -10,7 +10,7 @@ public class Trie {
         currNode = root;
 
         for(int i = 0; i < hexDigits.length; i++) { // loop that initializes the children of the root node
-            root.children[i] = new Node(hexDigits[i], i);
+            root.children[i] = new Node(hexDigits[i], i+1);
         }
     }
 

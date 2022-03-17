@@ -5,7 +5,7 @@ public class byte2hex {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String input = "";
         String str = "";
-
+        
         // Loop that reads the standard input
         while(input != null) {
             try {
@@ -14,13 +14,18 @@ public class byte2hex {
             }
             catch(Exception e) {}
         }
-
+          
         byte[] strBytes = str.getBytes();   // Converts the given input into an array of bytes
         char[] strHex = bytesToHex(strBytes);    // Converts the array of bytes into a stream of hex values
-
+        Trie trieTree = new Trie();
         for (char hex : strHex) {   // Loop that outputs the hex values
-            System.out.println(hex);
+            // System.out.println(hex);
+            if(trieTree.searchCurrNode(hex))
+            {
+                trieTree.insertAtCurrNode(hex);
+            }
         }
+        System.out.println(strHex);
     }
 
     /**
@@ -41,4 +46,3 @@ public class byte2hex {
         return hexArr;
     }
 }
-

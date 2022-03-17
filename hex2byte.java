@@ -35,12 +35,9 @@ public class hex2byte {
 
         // Loop that converts each pair of hex values into one byte value, and adds it to array
         for(int i = 0; i < bytesArr.length; i++) {
-            System.out.println(hexArr[i*2]);
-            System.out.println(hexArr[i*2+1]);
-            System.out.println(i);
-            String byteValue = new String(new char[]{hexArr[i*2], hexArr[i*2+1]});
+            String byteValue = new String(new char[]{hexArr[i*2], hexArr[i*2+1]});//makes the hex values into a string to be used as a byte value
             System.out.println(byteValue);
-            bytesArr[i] = (byte)(Integer.parseInt(byteValue,16)&0xFF);
+            bytesArr[i] = (byte)(Integer.parseInt(byteValue,16)&0xFF);//formats hex value into an a byte
         }        
         return bytesArr;
     }

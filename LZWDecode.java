@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class LZWDecode {
-    static ArrayList<NodeDecodeArray.DecodeNode> AL;
+    static ArrayList<NodeDecodeArray.DecodeListItem> AL;
     public static void main(String[] args)
     {
         NodeDecodeArray nda = new NodeDecodeArray();
@@ -12,7 +12,6 @@ public class LZWDecode {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String input = "";
         String something = "";
-        NodeDecodeArray.DecodeNode dn;
         while(input != null)
         {
             try
@@ -35,7 +34,7 @@ public class LZWDecode {
         }
         System.out.println(fullInput);
     }
-    public static String Decode(int index, NodeDecodeArray.DecodeNode dn)
+    public static String Decode(int index, NodeDecodeArray.DecodeListItem dn)
     {
         String fullPhrase="";
         if(index != 0)

@@ -6,31 +6,31 @@ import javax.swing.text.PlainDocument;
 class NodeDecodeArray
 {
     String[] hexChars = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
-    ArrayList<DecodeNode> list;
+    ArrayList<DecodeListItem> list;
     public NodeDecodeArray()
     {
-        DecodeNode dn = new DecodeNode(0, 0, "\0");
-        list= new ArrayList<DecodeNode>();
+        DecodeListItem dn = new DecodeListItem(0, 0, "\0");
+        list= new ArrayList<DecodeListItem>();
         list.add(dn);
         for(int i = 0; i < hexChars.length; i++)
         {
-            dn = new DecodeNode(i+1, 0, hexChars[i]);
+            dn = new DecodeListItem(i+1, 0, hexChars[i]);
             list.add(dn);
         }
     }
-    public ArrayList<DecodeNode> list()
+    public ArrayList<DecodeListItem> list()
     {
         return this.list;
     }
-    public DecodeNode newNode(int index, int p, String c) {
-        return new DecodeNode(index, p, c);
+    public DecodeListItem newNode(int index, int p, String c) {
+        return new DecodeListItem(index, p, c);
     }
-    public class DecodeNode
+    public class DecodeListItem
     {
         int phraseNumber;
         String c;
         int index;
-        public DecodeNode(int index, int p, String c)
+        public DecodeListItem(int index, int p, String c)
         {
             this.index = index;
             this.phraseNumber = p;

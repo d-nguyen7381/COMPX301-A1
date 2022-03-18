@@ -45,7 +45,7 @@ public class LZWencode {
         if(hexArr[hexArr.length - 1] != dictionary.getCurrNode().getChar()) {
             dictionary.resetCurrNode();
             dictionary.searchCurrNode(hexArr[hexArr.length - 1]);
-            // System.out.println(dictionary.getCurrNode().getPhrase());
+            System.out.println(dictionary.getCurrNode().getPhrase());
         }
 
     }

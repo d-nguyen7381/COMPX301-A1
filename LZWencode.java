@@ -10,7 +10,7 @@ public class LZWencode {
         while(input != null) {  // Loop that reads the standard input and stores it
             try {
                 hexStr += input;    
-                input = br.readLine(); 
+                input = br.readLine();   
             }
             catch(Exception e) {}
         }

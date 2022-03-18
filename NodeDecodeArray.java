@@ -5,22 +5,34 @@ import javax.swing.text.PlainDocument;
 //a decode array
 class NodeDecodeArray
 {
-    char[] hexChars = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+    String[] hexChars = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
+    ArrayList<DecodeNode> list;
     public NodeDecodeArray()
     {
-        ArrayList<DecodeNode> list= new ArrayList<DecodeNode>();
+        DecodeNode dn = new DecodeNode(0, 0, "\0");
+        list= new ArrayList<DecodeNode>();
+        list.add(dn);
         for(int i = 0; i < hexChars.length; i++)
         {
-            DecodeNode dn = new DecodeNode(i, hexChars[i]);
+            dn = new DecodeNode(i+1, 0, hexChars[i]);
             list.add(dn);
         }
-    }    
-    class DecodeNode
+    }
+    public ArrayList<DecodeNode> list()
+    {
+        return this.list;
+    }
+    public DecodeNode newNode(int index, int p, String c) {
+        return new DecodeNode(index, p, c);
+    }
+    public class DecodeNode
     {
         int phraseNumber;
-        char c;
-        DecodeNode(int p, char c)
+        String c;
+        int index;
+        public DecodeNode(int index, int p, String c)
         {
+            this.index = index;
             this.phraseNumber = p;
             this.c = c;
         }
@@ -28,9 +40,13 @@ class NodeDecodeArray
         {
             return this.phraseNumber;
         }
-        public char character()
+        public String character()
         {
             return this.c;
+        }
+        public int index()
+        {
+            return this.index;
         }
     }
 }

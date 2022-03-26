@@ -5,7 +5,7 @@ public class LZWencode {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));   // Buffered reader for reading input
         Trie dictionary = new Trie();   // Trie dictionairy for LZW algorithm
         String hexStr = ""; // Stores the hex digit inputs as a string
-
+        
         String input = ""; 
         while(input != null) {  // Loop that reads the standard input and stores it
             try {

@@ -12,6 +12,7 @@ public class LZWDecode {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String input = "";
         String something = "";
+        ArrayList<String> stringArray = new ArrayList<String>();
         while(input != null)
         {
             try
@@ -20,28 +21,31 @@ public class LZWDecode {
                 input = br.readLine();
             }
             catch(Exception e){}
+        } 
+        
+        for(int index = 0; index < something.length(); index+=2)
+        {
+            System.out.println(something.substring(index, index+2));
+            stringArray.add(something.substring(index, index+2));
         }
-        String[] stringArray = something.split(" ");
         String fullInput = "";
-        for(int i = 0; i < stringArray.length; i++)
+        for(int i = 0; i < stringArray.size(); i++)
         {
-            System.out.println(AL.size() + "," +  stringArray[i] + "," + AL.get(Integer.parseInt(stringArray[i])).character());
-            AL.add(nda.newNode(AL.size(), Integer.parseInt(stringArray[i]) , AL.get(Integer.parseInt(stringArray[i])).character()));
+            AL.add(nda.newNode(AL.size(), Integer.parseInt(stringArray.get(i)) ,AL.get(Integer.parseInt(stringArray.get(i))).character()));
         }
-        for(int i = 0; i < stringArray.length; i++)
+        for(int i = 0; i < stringArray.size(); i++)
         {
-            fullInput += Decode(Integer.parseInt(stringArray[i]),AL.get(i));
+            fullInput += Decode(Integer.parseInt(stringArray.get(i)),AL.get(i));
         }
         System.out.println(fullInput);
     }
     public static String Decode(int index, NodeDecodeArray.DecodeListItem dn)
     {
-        String fullPhrase="";
         if(index != 0)
         {
             dn = AL.get(index);
-            return fullPhrase += dn.character() + Decode(dn.phraseNumbers(), dn);
+            return dn.character() + Decode(dn.phraseNumbers(), dn);
         }
-        return fullPhrase;
+        return "";
     }
 }

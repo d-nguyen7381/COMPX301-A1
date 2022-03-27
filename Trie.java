@@ -69,7 +69,6 @@ public class Trie {
             if(currNode.children[i] == null) {
                 currNode.children[i] = new Node(c, newPhrase);
                 newPhrase++;    // increments the value of the new phrase for the next insert
-                System.out.println(currNode.children[i].getChar() + "," + currNode.children[i].getPhrase());
                 break;
             } 
         }

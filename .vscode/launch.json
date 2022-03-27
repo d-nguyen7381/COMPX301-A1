@@ -1,0 +1,49 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch LZWDecode",
+            "request": "launch",
+            "mainClass": "LZWDecode",
+            "projectName": "ShippiAssignment1_7c7c564e"
+        },
+        {
+            "type": "java",
+            "name": "Launch LZWDecompression",
+            "request": "launch",
+            "mainClass": "LZWDecompression",
+            "projectName": "ShippiAssignment1_7c7c564e"
+        },
+        {
+            "type": "java",
+            "name": "Launch LZWencode",
+            "request": "launch",
+            "mainClass": "LZWencode",
+            "projectName": "ShippiAssignment1_7c7c564e"
+        },
+        {
+            "type": "java",
+            "name": "Launch byte2hex",
+            "request": "launch",
+            "mainClass": "byte2hex",
+            "projectName": "ShippiAssignment1_7c7c564e"
+        },
+        {
+            "type": "java",
+            "name": "Launch hex2byte",
+            "request": "launch",
+            "mainClass": "hex2byte",
+            "projectName": "ShippiAssignment1_7c7c564e"
+        }
+    ]
+}

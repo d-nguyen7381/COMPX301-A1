@@ -42,7 +42,12 @@ class NodeDecodeArray
         }
         public String character()
         {
+
             return this.c;
+        }
+        public void setCharacter(String sc)
+        {
+            this.c = sc;
         }
         public int index()
         {

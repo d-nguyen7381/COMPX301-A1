@@ -1,12 +1,13 @@
 import java.io.*;
 
 public class LZWencode {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));   // Buffered reader for reading input
         Trie dictionary = new Trie();   // Trie dictionairy for LZW algorithm
         String hexStr = ""; // Stores the hex digit inputs as a string
-        
+        String sb = "";
         String input = ""; 
+        FileWriter myWriter = new FileWriter("test.txt");
         while(input != null) {  // Loop that reads the standard input and stores it
             try {
                 hexStr += input;    
@@ -37,6 +38,7 @@ public class LZWencode {
                 }
             }
             System.out.println(dictionary.getCurrNode().getPhrase());
+            sb += dictionary.getCurrNode().getPhrase() + "\r\n";
         }
 
         /* The LWZ loop won't print out at the last phrase number unless it belongs to a sequence.
@@ -46,7 +48,9 @@ public class LZWencode {
             dictionary.resetCurrNode();
             dictionary.searchCurrNode(hexArr[hexArr.length - 1]);
             System.out.println(dictionary.getCurrNode().getPhrase());
+            sb += dictionary.getCurrNode().getPhrase();
         }
-
+        myWriter.write(sb);
+        myWriter.close();
     }
 }

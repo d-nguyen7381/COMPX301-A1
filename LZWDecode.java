@@ -17,17 +17,15 @@ public class LZWDecode {
         {
             try
             {
-                something += input;
                 input = br.readLine();
+                System.out.println(input);
+                if(input != null)
+                {
+                    stringArray.add(input);
+                }
             }
             catch(Exception e){}
         } 
-        
-        for(int index = 0; index < something.length(); index+=2)
-        {
-            System.out.println(something.substring(index, index+2));
-            stringArray.add(something.substring(index, index+2));
-        }
         String fullInput = "";
         for(int i = 0; i < stringArray.size(); i++)
         {

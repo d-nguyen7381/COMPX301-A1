@@ -9,6 +9,8 @@ import java.util.ArrayList;
 public class LZWDecode {
     static ArrayList<NodeDecodeArray.DecodeListItem> AL;
     static String fullInput = "";
+    static ArrayList<String> characterDictionary;
+    static ArrayList<Integer> phraseNumbers;
     public static void main(String[] args)
     {
         NodeDecodeArray nda = new NodeDecodeArray();
@@ -19,6 +21,16 @@ public class LZWDecode {
             //String input="";
             String[] input = content.split("\r\n");
             ArrayList<String> stringArray = new ArrayList<String>();
+            characterDictionary = new ArrayList<String>();
+            phraseNumbers = new ArrayList<Integer>();
+            String[] hexChars = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
+            characterDictionary.add("\n");
+            phraseNumbers.add(null);
+            for(int hexDigits = 0; hexDigits < hexChars.length; hexDigits++)
+            {
+                characterDictionary.add(hexChars[hexDigits]);
+                phraseNumbers.add(0);
+            }
             int stringArrayIndex = 0;
             for(stringArrayIndex = 0; stringArrayIndex < input.length; stringArrayIndex++)
             {
@@ -36,37 +48,34 @@ public class LZWDecode {
             //         stringArray.add(input);
             //     }
             // }
-            String w= AL.get(Integer.parseInt(stringArray.get(0))).character();
-            int entry = 0;
-            for(int i = 1; i < stringArray.size(); i++)
-            {
-                try
-                {
-                    //if previous index is not the same as the phrase number
-//                    System.out.println(Integer.parseInt(stringArray.get(i)));
-//                    if(AL.get(Integer.parseInt(stringArray.get(i+1))).character()!=AL.get(AL.get(Integer.parseInt(stringArray.get(i))).phraseNumbers()).character()) {
-//                        AL.add(nda.newNode(AL.size(), Integer.parseInt(stringArray.get(i)), AL.get(Integer.parseInt(stringArray.get(i + 1))).character()));
-//                    }
-//                    else
-//                    {
-//                        AL.add(nda.newNode(AL.size(), Integer.parseInt(stringArray.get(i)), AL.get(Integer.parseInt(stringArray.get(i))).character()));
-//                    }
-                    AL.add(nda.newNode(AL.size(), entry, w));
-                    w = w + AL.get(AL.get(Integer.parseInt(stringArray.get(i))).phraseNumbers()).character();
-                    System.out.println(w);
-                    entry = Integer.parseInt(stringArray.get(i));
-                    w = AL.get(entry).character();
-                    //AL.add(nda.newNode(AL.size(), Integer.parseInt(stringArray.get(i)), w));
-//
-                }
-                catch(Exception e)
-                {
 
-                 }
+            int OLD= Integer.parseInt(stringArray.get(0));
+            System.out.println(OLD);
+            String oldCode = characterDictionary.get(OLD);
+            System.out.println(oldCode);
+            int entry = 0;
+            String combined = "";
+            for(int i = 1; i < stringArray.size(); i++) {
+                int NEW_CODE = Integer.parseInt(stringArray.get(i));
+                if(!phraseNumbers.contains(NEW_CODE))
+                {
+                    combined = characterDictionary.get(OLD);
+                    combined += oldCode;
+                }
+                else
+                {
+                    combined = characterDictionary.get(NEW_CODE);
+                }
+                System.out.println(combined);
+                phraseNumbers.add(phraseNumbers.size());
+                oldCode
+                characterDictionary.add(oldCode + combined.charAt(0));
+                OLD = NEW_CODE;
+
             }
             for(int i =0; i < stringArray.size(); i++)
             {
-                fullInput += Decode(Integer.parseInt(stringArray.get(i)),AL.get(i));
+                fullInput += Decode(phraseNumbers.get(Integer.parseInt(stringArray.get(i))),characterDictionary.get(Integer.parseInt(stringArray.get(i))));
             }
             System.out.println(fullInput);
         } catch (IOException e) {
@@ -74,10 +83,18 @@ public class LZWDecode {
         }
 
     }
-    public static String Decode(int index, NodeDecodeArray.DecodeListItem dn)
+    public static String Decode(int index, String dn)
     {
-        //System.out.print(index);
-        dn = AL.get(index);
-        return dn.character();
+        System.out.print(index);
+        return Decode(phraseNumbers.get(index), characterDictionary.get(index))+ dn;
     }
+//    public static boolean exists(NodeDecodeArray.DecodeListItem dn)
+//    {
+//        if()
+//        {
+//            return true
+//        }
+//        return false;
+//    }
+
 }

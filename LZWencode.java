@@ -6,8 +6,7 @@ public class LZWencode {
         Trie dictionary = new Trie();   // Trie dictionairy for LZW algorithm
         String hexStr = ""; // Stores the hex digit inputs as a string
         String sb = "";
-        String input = ""; 
-        FileWriter myWriter = new FileWriter("test.txt");
+        String input = "";
         while(input != null) {  // Loop that reads the standard input and stores it
             try {
                 hexStr += input;    
@@ -47,10 +46,8 @@ public class LZWencode {
         if(hexArr[hexArr.length - 1] != dictionary.getCurrNode().getChar()) {
             dictionary.resetCurrNode();
             dictionary.searchCurrNode(hexArr[hexArr.length - 1]);
-            System.out.println(dictionary.getCurrNode().getPhrase());
-            sb += dictionary.getCurrNode().getPhrase();
+            System.out.print(dictionary.getCurrNode().getPhrase());
+            //sb += dictionary.getCurrNode().getPhrase();
         }
-        myWriter.write(sb);
-        myWriter.close();
     }
 }

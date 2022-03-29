@@ -21,7 +21,7 @@ public class hex2byte {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         bos.write(strBytes,0,strBytes.length);
         //String streamData = bos.toString();
-        System.out.println(bos);
+        System.out.print(bos);
     }
 
     /**
@@ -37,7 +37,7 @@ public class hex2byte {
         for(int i = 0; i < bytesArr.length; i++) {
             String byteValue = new String(new char[]{hexArr[i*2], hexArr[i*2+1]});//makes the hex values into a string to be used as a byte value
             bytesArr[i] = (byte)(Integer.parseInt(byteValue,16)&0xFF);//formats hex value into an a byte
-        }        
+        }
         return bytesArr;
     }
 }

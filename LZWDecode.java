@@ -11,6 +11,7 @@ public class LZWDecode {
     static String fullInput = "";
     static ArrayList<String> characterDictionary;
     static ArrayList<Integer> phraseNumbers;
+    static String globalString="";
     public static void main(String[] args)
     {
         NodeDecodeArray nda = new NodeDecodeArray();
@@ -19,82 +20,85 @@ public class LZWDecode {
             String content = Files.readString(Paths.get(args[0]));
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             //String input="";
-            String[] input = content.split("\r\n");
-            ArrayList<String> stringArray = new ArrayList<String>();
+            String[] input = content.split("\n");
+            //br.readLine().split("\n");
+            ArrayList<Integer> integerArrayInput = new ArrayList<Integer>();
             characterDictionary = new ArrayList<String>();
             phraseNumbers = new ArrayList<Integer>();
-            String[] hexChars = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
-            characterDictionary.add("\n");
-            phraseNumbers.add(null);
-            for(int hexDigits = 0; hexDigits < hexChars.length; hexDigits++)
+            String[] hexSymbols = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
+            characterDictionary.add("");
+            phraseNumbers.add(0);
+            for(int hexDigits = 0; hexDigits < hexSymbols.length; hexDigits++)
             {
-                characterDictionary.add(hexChars[hexDigits]);
+                characterDictionary.add(hexSymbols[hexDigits]);
                 phraseNumbers.add(0);
             }
-            int stringArrayIndex = 0;
-            for(stringArrayIndex = 0; stringArrayIndex < input.length; stringArrayIndex++)
+//            while((input = br.readLine()) != null)
+//            {
+//                if(input != null) {
+//                    integerArrayInput.add(Integer.parseInt(input));
+//                }
+//            }
+            for(String s: input)
             {
-                try
-                {
-                    stringArray.add(input[stringArrayIndex]);
+                if(input != null) {
+                    integerArrayInput.add(Integer.parseInt(s));
                 }
-                catch(Exception e){}
             }
-            // while(br.readLine()!=null)
-            // {
-            //     input = br.readLine();
-            //     if(input != null)
-            //     {
-            //         stringArray.add(input);
-            //     }
-            // }
 
-            int OLD= Integer.parseInt(stringArray.get(0));
-            System.out.println(OLD);
-            String oldCode = characterDictionary.get(OLD);
-            System.out.println(oldCode);
-            int entry = 0;
-            String combined = "";
-            for(int i = 1; i < stringArray.size(); i++) {
-                int NEW_CODE = Integer.parseInt(stringArray.get(i));
-                if(!phraseNumbers.contains(NEW_CODE))
+            //read a character k
+            Integer i = 1;
+            //get the first input code
+
+            //puts the next start character as the character
+            for(Integer indexArrayInput: integerArrayInput) {
+
+                int newPhraseNumber = 0;
+                int oldPhraseNumber = indexArrayInput;
+                System.out.println(Decode(oldPhraseNumber));
+
+                if(i < integerArrayInput.size())
                 {
-                    combined = characterDictionary.get(OLD);
-                    combined += oldCode;
+                    newPhraseNumber = integerArrayInput.get(i);
                 }
-                else
+
+                phraseNumbers.add(oldPhraseNumber);
+                int checkPhrase = phraseNumbers.get(newPhraseNumber);
+                //while the phrase number is not 0
+                while(checkPhrase != 0)
                 {
-                    combined = characterDictionary.get(NEW_CODE);
+                    newPhraseNumber = checkPhrase;
+                    checkPhrase = phraseNumbers.get(checkPhrase);
                 }
-                System.out.println(combined);
-                phraseNumbers.add(phraseNumbers.size());
-                oldCode
-                characterDictionary.add(oldCode + combined.charAt(0));
-                OLD = NEW_CODE;
+                String currentChar = characterDictionary.get(newPhraseNumber);
+                characterDictionary.add(currentChar);
+                i++;
 
             }
-            for(int i =0; i < stringArray.size(); i++)
-            {
-                fullInput += Decode(phraseNumbers.get(Integer.parseInt(stringArray.get(i))),characterDictionary.get(Integer.parseInt(stringArray.get(i))));
-            }
-            System.out.println(fullInput);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
-    public static String Decode(int index, String dn)
+    public static String Decode(int index)
     {
-        System.out.print(index);
-        return Decode(phraseNumbers.get(index), characterDictionary.get(index))+ dn;
+        ArrayList<Integer> arrayInt = new ArrayList<Integer>();
+        globalString = "";
+        String charString="";
+        while(index != 0)
+        {
+            //globalString += charString;
+            arrayInt.add(index);
+            index = phraseNumbers.get(index);
+        }
+        while(arrayInt.size()!= 0)
+        {
+            Integer currIndex = arrayInt.get(arrayInt.size()-1);
+            charString = characterDictionary.get(currIndex);
+            globalString+= charString;
+            arrayInt.remove(arrayInt.size()-1);
+        }
+        return globalString;
     }
-//    public static boolean exists(NodeDecodeArray.DecodeListItem dn)
-//    {
-//        if()
-//        {
-//            return true
-//        }
-//        return false;
-//    }
-
 }

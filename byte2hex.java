@@ -17,10 +17,16 @@ public class byte2hex {
 
         byte[] strBytes = str.getBytes();   // Converts the given input into an array of bytes
         char[] strHex = bytesToHex(strBytes);    // Converts the array of bytes into a stream of hex values
-        // for (char hex : strHex) {   // Loop that outputs the hex values
-        //     System.out.println(hex);
-        // }
-        System.out.println(strHex);        
+        int hexIndex = 0;
+         for (char hex : strHex) {   // Loop that outputs the hex values
+             if (hexIndex == strHex.length-1) {
+                 System.out.print(hex);
+             }
+             else {System.out.println(hex);
+             }
+
+         }
+         //System.out.print(strHex);
     }
 
     /**

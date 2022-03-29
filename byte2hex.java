@@ -26,7 +26,7 @@ public class byte2hex {
              }
 
          }
-         System.out.print(strHex);
+         //System.out.print(strHex);
     }
 
     /**

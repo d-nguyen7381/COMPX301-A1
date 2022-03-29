@@ -26,6 +26,7 @@ public class byte2hex {
              }
 
          }
+         //helps in comparing full hex output will full hex output of the LZWDecode
          //System.out.print(strHex);
     }
 

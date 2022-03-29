@@ -88,6 +88,7 @@ public class LZWDecode {
         }
 
     }
+
     //outputs the full string concatenated
     public static String Decode(int index, int curr)
     {
@@ -108,7 +109,6 @@ public class LZWDecode {
         {
             Integer currIndex = arrayInt.get(arrayInt.size()-1);
             charString = characterDictionary.get(currIndex);
-
             globalString+= currIndex + " " + charString+"\n";
             //remove the activity once done
             arrayInt.remove(arrayInt.size()-1);

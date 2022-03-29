@@ -17,17 +17,19 @@ public class byte2hex {
 
         byte[] strBytes = str.getBytes();   // Converts the given input into an array of bytes
         char[] strHex = bytesToHex(strBytes);    // Converts the array of bytes into a stream of hex values
-        int hexIndex = 0;
-         for (char hex : strHex) {   // Loop that outputs the hex values
-             if (hexIndex == strHex.length-1) {
-                 System.out.print(hex);
-             }
-             else {System.out.println(hex);
-             }
-
-         }
-         //helps in comparing full hex output will full hex output of the LZWDecode
-         //System.out.print(strHex);
+        int strHexLast = 0;
+        for (char hex : strHex) {   // Loop that outputs the hex values
+            if(strHexLast != strHex.length - 1)
+            {
+                System.out.print(hex);
+            }
+            else
+            {
+                System.out.println(hex);
+            }
+            strHexLast++;
+        }
+        // System.out.println(strHex);        
     }
 
     /**
